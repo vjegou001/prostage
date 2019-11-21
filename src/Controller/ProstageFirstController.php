@@ -13,10 +13,7 @@ class ProstageFirstController extends AbstractController
      */
     public function index()
     {
-        //return new Response("<h1>accueil</h1>");
-        return $this->render('prostage_first/index.html.twig', [
-            'controller_name' => 'ProstageFirstConroller'
-        ]);
+        return $this->render('prostage_first/index.html.twig');
     }
 
     /**
@@ -24,7 +21,7 @@ class ProstageFirstController extends AbstractController
      */
     public function listEntreprise() 
     {
-        return new Response("<h1>Voici la liste des entreprises</h1>");
+        return $this->render('prostage_first/listEnt.html.twig');
     }
 
     /**
