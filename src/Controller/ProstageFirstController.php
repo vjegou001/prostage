@@ -14,7 +14,7 @@ class ProstageFirstController extends AbstractController
     public function index()
     {
         //return new Response("<h1>accueil</h1>");
-        return $this->render('prostage.html.twig'. [
+        return $this->render('prostage_first/index.html.twig', [
             'controller_name' => 'ProstageFirstConroller'
         ]);
     }
