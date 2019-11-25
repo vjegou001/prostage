@@ -25,9 +25,9 @@ class ProstageFirstController extends AbstractController
     }
 
     /**
-     * @Route("/formation", name="listeformation")
+     * @Route("/formation", name="listeFormation")
      */
-    public function listformation() 
+    public function listFormation() 
     {
         return new Response("<h1>Voici la liste des formations</h1>");
     }
