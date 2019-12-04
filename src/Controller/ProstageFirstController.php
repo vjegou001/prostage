@@ -29,15 +29,16 @@ class ProstageFirstController extends AbstractController
      */
     public function listFormation() 
     {
-        return new Response("<h1>Voici la liste des formations</h1>");
+        return $this->render('prostage_first/listForm.html.twig');
     }
 
     /**
-     * @Route("/stage/{id}", name="listeStage")
+     * @Route("/stage/345", name="listeStage")
      */
-    public function listeStage(int $id) 
+    public function listeStage() 
     {
-        return new Response("<h1>Voici le stage $id</h1>");
+        return $this->render('prostage_first/listStage.html.twig',
+        ['idStage' => 255]);
     }
     
 
