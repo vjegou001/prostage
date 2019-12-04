@@ -33,12 +33,12 @@ class ProstageFirstController extends AbstractController
     }
 
     /**
-     * @Route("/stage/345", name="listeStage")
+     * @Route("/stage/{idStage}", name="Stage")
      */
-    public function listeStage() 
+    public function listeStage($idStage) 
     {
         return $this->render('prostage_first/listStage.html.twig',
-        ['idStage' => 255]);
+        ['idStage' => $idStage]);
     }
     
 

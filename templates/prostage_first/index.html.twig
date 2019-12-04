@@ -1,3 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <h1>Bienvenu sur mon TP Prostage</h1>
 
 <p>
@@ -6,4 +9,5 @@
 
 <a href="{{ path('listeEntreprise') }}">Entreprise</a>
 <a href="{{ path('listeFormation') }}">Formations</a>
-<a href="{{ path('listeStage') }}">le stage</a>
+<a href="{{ path('Stage', { idStage : 11 }) }}">le stage</a>
+{% endblock %}
