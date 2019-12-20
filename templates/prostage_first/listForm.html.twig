@@ -1,7 +1,45 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
+{% block contenu %}
+<div class="row">
+	<div class="col-md-1">
+	</div>
+	<div class="col-md-10">
+		<div class="row">
+			<div class="col-md-12">
+				<h2>
+					Liste des entreprises
+				</h2>
+			</div>
+		</div>
+		<div class="row liste-stages-titres">
+			<div class="col-6">
+				<p>Nom</p>
+			</div>
+		</div>
+		<div class="row liste-stages">
+			<div class="col-md-12">
 
-<h1>Liste des formations</h1>
+				{% set numero = 'impair' %}
+				{% for entreprise in listeEntreprises %}
+					<a href="/entreprises/{{ entreprise.id }}">
+						<div class="row entreprise-row-{{ numero }}">
+						<div class="col-12 entreprise-col-impair">
+							<p>{{ entreprise.nom }}</p>
+						</div>
+					</div>
+					</a>
 
+					{% if numero == 'impair' %}
+						{% set numero = 'pair' %}
+					{% else %}
+						{% set numero = 'impair' %}
+					{% endif %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<div class="col-md-1">
+	</div>
+</div>
 {% endblock %}
