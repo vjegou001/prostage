@@ -1,9 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-<h1>Stage {{ idStage }}</h1>
+{% block contenu %}
+<h1>Stage {{ stage.id }}</h1>
 
 <p>
-    ceci est le stage {{ idStage }}.
+    Voici le stage {{ stage.id }}.
+    {{ stage.titre }}, du {{ stage.dateDebut|date('Y-m-d') }}, au {{ stage.dateFin|date('Y-m-d') }}
+</p>
+<p>
+    Description :
+    {{ stage.description }}.
 </p>
 {% endblock %}

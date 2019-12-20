@@ -4,42 +4,85 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
+
+use App\Entity\Stage;
+use App\Entity\Entreprise;
+use App\Entity\Formation;
+
 
 class ProstageFirstController extends AbstractController
 {
     /**
-     * @Route("/", name="prostage_first")
+     * @Route("/", name="prostage")
      */
     public function index()
     {
-        return $this->render('prostage_first/index.html.twig');
+        $listeStages = $this->getDoctrine()->getRepository(Stage::class)->findAll();
+        
+        return $this->render('prostage_first/index.html.twig', [
+            "listeStages" => $listeStages,
+        ]);
     }
 
     /**
-     * @Route("/entreprise", name="listeEntreprise")
+     * @Route("/listEnt", name="entreprises")
      */
-    public function listEntreprise() 
+    public function entreprises()
     {
-        return $this->render('prostage_first/listEnt.html.twig');
+        $listeEntreprises = $this->getDoctrine()->getRepository(Entreprise::class)->findAll();
+        
+        return $this->render('prostage_first/listEnt.html.twig', [
+            "listeEntreprises" => $listeEntreprises,
+        ]);
     }
 
     /**
-     * @Route("/formation", name="listeFormation")
+     * @Route("/entreprise/{id}", name="entStages")
      */
-    public function listFormation() 
+    public function entStages($id)
     {
-        return $this->render('prostage_first/listForm.html.twig');
+        $entreprise = $this->getDoctrine()->getRepository(Entreprise::class)->find($id);
+        
+        return $this->render('prostage_first/entStages.html.twig', [
+            "entreprise" => $entreprise,
+        ]);
     }
 
     /**
-     * @Route("/stage/{idStage}", name="Stage")
+     * @Route("/formations", name="formations")
      */
-    public function listeStage($idStage) 
+    public function formations()
     {
-        return $this->render('prostage_first/listStage.html.twig',
-        ['idStage' => $idStage]);
+        $listeFormations = $this->getDoctrine()->getRepository(Formation::class)->findBy(array(), array('type' => 'ASC'));
+        
+        return $this->render('prostage_first/listForm.html.twig', [
+            "listeFormations" => $listeFormations,
+        ]);
     }
-    
 
+    /**
+     * @Route("/formation/{id}", name="formation_stages")
+     */
+    public function formation_stages($id)
+    {
+        $formation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
+
+        $listeStages = $this->getDoctrine()->getRepository(Stage::class)->findById($formation->getStages()->getValues());
+        
+        return $this->render('prostage_first/formStages.html.twig', [
+            "formation" => $formation,
+            "listeStages" => $listeStages,
+        ]);
+    }
+
+    /**
+     * @Route("/stages/{id}", name="stages")
+     */
+    public function stages(int $id)
+    {
+        $stage = $this->getDoctrine()->getRepository(Stage::class)->find($id);
+        return $this->render('prostage_first/listStage.html.twig', [
+            'stage' => $stage,
+        ]);
+    }
 }

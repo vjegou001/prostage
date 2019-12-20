@@ -29,11 +29,6 @@ class Formation
     private $description;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Stage", mappedBy="lesFormations")
-     */
-    private $yes;
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Stage", mappedBy="formations")
      */
     private $stages;
@@ -69,34 +64,6 @@ class Formation
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Stage[]
-     */
-    public function getYes(): Collection
-    {
-        return $this->yes;
-    }
-
-    public function addYe(Stage $ye): self
-    {
-        if (!$this->yes->contains($ye)) {
-            $this->yes[] = $ye;
-            $ye->addLesFormation($this);
-        }
-
-        return $this;
-    }
-
-    public function removeYe(Stage $ye): self
-    {
-        if ($this->yes->contains($ye)) {
-            $this->yes->removeElement($ye);
-            $ye->removeLesFormation($this);
-        }
 
         return $this;
     }

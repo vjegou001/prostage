@@ -2,66 +2,14 @@
 
 {% block contenu %}
 <div class="row">
-	<div class="col-md-1">
-	</div>
-	<div class="col-md-10">
-		<div class="row">
-			<div class="col-md-12">
-				<h2>
-					Liste des stages
-				</h2>
-			</div>
-		</div>
-		<div class="row liste-stages-titres">
-			<div class="col-6">
-				<p>Nom</p>
-			</div>
-			<div class="col-2 liste-stages-titre">
-				<p>Entreprise</p>
-			</div>
-			<div class="col-2 liste-stages-titre">
-				<p>Formation</p>
-			</div>
-			<div class="col-2 liste-stages-titre">
-				<p>Durée</p>
-			</div>
-		</div>
-		<div class="row liste-stages">
-			<div class="col-md-12">
+	{%for stage in listeStages%}
+	<div class="col-md-4">
+		<ul>
+			<li><a href="{{path('stages', {'id': stage.id} )}}">{{stage.titre}}</a></li>
+			<li><a href="{{path('entreprises', {'id': stage.entreprise.id} )}}">{{stage.entreprise.nom}}</a></li>
 
-				{% set numero = 'impair' %}
-				{% for stage in listeStages %}
-					<a href="/stages/{{ stage.id }}">
-						<div class="row stage-row-{{ numero }}">
-						<div class="col-6 stage-col-impair">
-							<p>{{ stage.titre }}</p>
-						</div>
-						<div class="col-2 stage-col-pair">
-							<p>{{ stage.entreprise.nom }}</p>
-						</div>
-						<div class="col-2 stage-col-impair">
-							<p>
-								{% for formation in stage.formations %}
-									{{ formation.type }}
-								{% endfor %}
-							</p>
-						</div>
-						<div class="col-2 stage-col-pair">
-							<p>du {{ stage.dateDebut | date("d/m/Y") }} <br /> au {{ stage.dateFin | date("d/m/Y") }}</p>
-						</div>
-					</div>
-					</a>
-
-					{% if numero == 'impair' %}
-						{% set numero = 'pair' %}
-					{% else %}
-						{% set numero = 'impair' %}
-					{% endif %}
-				{% endfor %}
-			</div>
-		</div>
+		</ul>
 	</div>
-	<div class="col-md-1">
-	</div>
+	{%endfor%}
 </div>
 {% endblock %}

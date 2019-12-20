@@ -109,7 +109,7 @@ class Entreprise
     public function setSite(string $site): self
     {
         $this->site = $site;
-
+  
         return $this;
     }
 

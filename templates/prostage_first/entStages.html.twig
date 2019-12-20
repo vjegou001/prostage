@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block contenu %}
+<div class="row">
+	<h1>Entreprise {{ entreprise.id }}</h1>
+
+<p>
+    Voici les informations de l'entreprise {{ entreprise.titre }}.
+</p>
+<p>
+    Adresse :
+	{{ entreprise.adresse }}.
+</p>
+<p>
+    Site :
+	{{ entreprise.site }}.
+</p>
+p>
+    Telephone :
+	{{ entreprise.numTel }}.
+</p>
+
+</div>
+{% endblock %}
